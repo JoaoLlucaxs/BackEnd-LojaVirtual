@@ -13,9 +13,9 @@ public class Imagem_Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_imagem_produto")
     private Long id;
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text",nullable = false)
     private String imagem_original;
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text",nullable = false)
     private String imagem_miniatura;
     @ManyToOne(targetEntity = Produto.class)
     @JoinColumn(name = "produto_id",nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "produto_fk"))

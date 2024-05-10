@@ -14,20 +14,27 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq_produto")
     private Long id;
+    @Column(nullable = false)
     private String tipoUnidade;
+    @Column(nullable = false)
     private String nome;
-    @Column(columnDefinition = "text",length = 2000)
+    @Column(columnDefinition = "text",length = 2000, nullable = false)
     private String descricao;
 
     // NotaItemProduto associar
-
+    @Column(nullable = false)
     private Double peso;
+    @Column(nullable = false)
     private Boolean ativo= Boolean.TRUE;
+    @Column(nullable = false)
     private Double altura;
+    @Column(nullable = false)
     private Double largura;
+    @Column(nullable = false)
     private Double profundidade;
+    @Column(nullable = false)
     private BigDecimal valorDeVenda=BigDecimal.ZERO;
-
+    @Column(nullable = false)
     private Integer qtdEstoque=0;
 
     private Integer qtdAlertaEstoque=0;

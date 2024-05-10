@@ -19,17 +19,18 @@ public class ContaReceber implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq_conta_receber")
     private Long id;
-
+    @Column(nullable = false)
     private String descricao;
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusContaReceber statusContaReceber;
-
+    @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date data_Vencimento;
     @Temporal(TemporalType.DATE)
     private Date data_Pagamento;
-
-    private BigDecimal valortTotal;
+    @Column(nullable = false)
+    private BigDecimal valorTotal;
     private BigDecimal valorDesconto;
 
     @ManyToOne(targetEntity = Pessoa.class)
@@ -76,12 +77,12 @@ public class ContaReceber implements Serializable {
         this.data_Pagamento = data_Pagamento;
     }
 
-    public BigDecimal getValortTotal() {
-        return valortTotal;
+    public BigDecimal getValorTotal() {
+        return valorTotal;
     }
 
-    public void setValortTotal(BigDecimal valortTotal) {
-        this.valortTotal = valortTotal;
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
     public BigDecimal getValorDesconto() {

@@ -16,8 +16,11 @@ public abstract class Pessoa implements Serializable {
     private Long id;
     @OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY) // "pessoa" atribuida ao objeto setado em endereco , lazy - só irá carregar endereço quando eu der um get em Endereco
     List<Endereco> enderecos=new ArrayList<>();
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String telefone;
+    @Column(nullable = false)
     private String email;
 
     public Long getId() {

@@ -9,15 +9,18 @@ import java.util.Objects;
 @PrimaryKeyJoinColumn(name = "id") // apontando para o id Pessoa
 public class Pessoa_Juridica extends Pessoa implements Serializable {
     private static final long serialVersionUID=1L;
-
+    @Column(nullable = false)
     private String cnpj;
-    @Column(name = "inscricao_estadual")
+    @Column(name = "inscricao_estadual", nullable = false)
     private String insc_Estadual;
     @Column(name = "inscricao_municipal")
     private String insc_Municipal;
-
+    @Column(nullable = false)
     private String nomeFantasia;
+    @Column(nullable = false)
     private String razaoSocial;
+
+    private String categoria;
 
     public String getInsc_Estadual() {
         return insc_Estadual;
@@ -50,5 +53,22 @@ public class Pessoa_Juridica extends Pessoa implements Serializable {
     public void setRazaoSocial(String razaoSocial) {
         this.razaoSocial = razaoSocial;
     }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
 
 }
