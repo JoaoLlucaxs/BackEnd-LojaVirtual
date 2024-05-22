@@ -25,6 +25,10 @@ public class Acesso implements GrantedAuthority  {
         return descricao;
     }
 
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
