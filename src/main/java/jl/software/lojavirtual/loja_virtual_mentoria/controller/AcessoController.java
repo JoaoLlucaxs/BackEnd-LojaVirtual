@@ -24,7 +24,7 @@ public class AcessoController {
 
     @ResponseBody // dar um retorno da api
     @PostMapping("**/salvarAcesso") // mapeando a url para receber um json
-    public ResponseEntity <Acesso> salvarAcesso(@RequestBody Acesso acesso){ // request recebe json e converte em obj
+    public ResponseEntity<Acesso> salvarAcesso(@RequestBody Acesso acesso){ // request recebe json e converte em obj
         Acesso acessoSalvo=acessoService.save(acesso);
         return new ResponseEntity<Acesso>(acessoSalvo, HttpStatus.OK);
     }
@@ -33,6 +33,6 @@ public class AcessoController {
     @PostMapping("**/deletarAcesso") // mapeando a url para receber um json
     public ResponseEntity<?> deletarAcesso(@RequestBody Acesso acesso){ // request recebe json e converte em obj
      acessoRepository.deleteById(acesso.getId());
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity("Acesso removido",HttpStatus.OK);
     }
 }
