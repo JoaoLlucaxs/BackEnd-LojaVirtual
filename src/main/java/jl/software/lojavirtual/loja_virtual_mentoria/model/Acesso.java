@@ -2,6 +2,8 @@ package jl.software.lojavirtual.loja_virtual_mentoria.model;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -45,6 +47,7 @@ public class Acesso implements GrantedAuthority  {
         return Objects.hash(id);
     }
 
+    @JsonIgnore
     @Override
     public String getAuthority() {
         return this.descricao;
