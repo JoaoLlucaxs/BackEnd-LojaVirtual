@@ -22,6 +22,9 @@ public abstract class Pessoa implements Serializable {
     private String telefone;
     @Column(nullable = false)
     private String email;
+    
+    @Column
+    private String tipoPessoa;
 
     public Long getId() {
         return id;
@@ -63,7 +66,15 @@ public abstract class Pessoa implements Serializable {
         this.enderecos = enderecos;
     }
 
-    @Override
+    public String getTipoPessoa() {
+		return tipoPessoa;
+	}
+
+	public void setTipoPessoa(String tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
