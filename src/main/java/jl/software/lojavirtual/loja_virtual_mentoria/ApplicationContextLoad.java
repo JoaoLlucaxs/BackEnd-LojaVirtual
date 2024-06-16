@@ -7,6 +7,8 @@ import org.springframework.context.ApplicationContextAware;
 
 public class ApplicationContextLoad implements ApplicationContextAware{
 
+	// Foi criada para pegar o contexto de dependência do spring.. apenas uma classe utilitaria devido talvez não conseguir injetar diretamente
+	
 	@Autowired
 	private static ApplicationContext applicationContext;
 	

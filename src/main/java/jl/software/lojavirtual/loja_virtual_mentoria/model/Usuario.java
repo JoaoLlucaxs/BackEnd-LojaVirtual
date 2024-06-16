@@ -29,7 +29,7 @@ public class Usuario implements UserDetails {
 
     // Inserindo LAZY para um carregamento preguiçoso, só chamar quando precisar
     // Estou criando uma tabela intermediaria entre Usuario e Acesso onde irá se chamar "usuarios_acesso"
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuarios_acesso", uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id","acesso_id"},
     name = "unique_acesso_user"),
     joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id",table = "usuario",
