@@ -1,5 +1,6 @@
 package jl.software.lojavirtual.loja_virtual_mentoria.security;
 
+import java.io.IOException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +11,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
 import jl.software.lojavirtual.loja_virtual_mentoria.ApplicationContextLoad;
 import jl.software.lojavirtual.loja_virtual_mentoria.model.Usuario;
 import jl.software.lojavirtual.loja_virtual_mentoria.repository.UsuarioRepository;
@@ -49,9 +52,12 @@ public class JWTTokenAutenticacaoService {
 	}
 	
 	
-	public Authentication getAuthentication(HttpServletRequest request, HttpServletResponse response) {/*Retorna o usuário validado com o token, caso o token não seja válido retorna null*/
+	public Authentication getAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {/*Retorna o usuário validado com o token, caso o token não seja válido retorna null*/
 		
 		String token=request.getHeader(HEADER_TOKEN);
+		try {
+			
+		
 		if(token != null) {
 			
 			String tokenLimpo=token.replace(TOKEN_PREFIX, "").trim();
@@ -72,11 +78,19 @@ public class JWTTokenAutenticacaoService {
 									usuario.getSenha(), 
 									usuario.getAuthorities()
 									);
+						}
+					}
 				}
+			} catch (SignatureException e) {
+				response.getWriter().write("Token inválido");
+			}catch (ExpiredJwtException e) {
+				response.getWriter().write("Token está expirado, efetue o login novamente");
 			}
-		}
 		
-		liberacaoDeCors(response);
+			finally {
+				liberacaoDeCors(response);
+			}	
+	
 		return null;
 	}
 	
