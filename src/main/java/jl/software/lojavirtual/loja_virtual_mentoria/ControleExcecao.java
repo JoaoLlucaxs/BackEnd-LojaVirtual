@@ -23,6 +23,17 @@ import jl.software.lojavirtual.loja_virtual_mentoria.model.dto.ObjetoErroDTO;
 @ControllerAdvice
 public class ControleExcecao extends ResponseEntityExceptionHandler{ // interceptar excecoes e erros do projeto
 	
+	@ExceptionHandler(ExceptionMentoriaJava.class) // controlando id errado
+	public ResponseEntity<Object> handleExceptionCustom(ExceptionMentoriaJava ex){
+		ObjetoErroDTO objetoErroDTO=new ObjetoErroDTO();
+		
+		objetoErroDTO.setErro(ex.getMessage());
+		objetoErroDTO.setCode(HttpStatus.OK.toString());
+		
+		return new ResponseEntity<Object>(objetoErroDTO,HttpStatus.OK);
+	}
+	
+	
 	// Captura exceções do projeto
 	@ExceptionHandler({Exception.class, RuntimeException.class,Throwable.class})
 	@Override
